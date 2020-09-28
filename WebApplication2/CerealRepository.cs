@@ -1,6 +1,11 @@
-﻿namespace WebApplication2
+﻿namespace ECommerceApp.Services
 {
-    internal class CerealRepository
+    public interface ICerealRepository
     {
+    }
+
+    public class CerealRepository : ICerealRepository
+    {
+
     }
 }
