@@ -1,6 +1,13 @@
 ﻿namespace ECommerceApp.Controllers
 {
-    internal interface ICerealRepository
+    public interface ICerealRepository
+
     {
     }
+
+    public class CerealRepository : ICerealRepository
+    {
+
+    }
+
 }

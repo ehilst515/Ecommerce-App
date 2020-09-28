@@ -1,14 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ECommerceApp.Controllers
 {
     public class CerealsController : Controller
     {
+        public CerealsController(ICerealRepository cerealRepository)
+        {
+            this.ICerealRepository = cerealRepository;
+        }
         // GET: CerealsController
         public ActionResult Index()
         {
