@@ -5,6 +5,8 @@ namespace ECommerceApp.Controllers
 {
     public class CerealsController : Controller
     {
+        public ICerealRepository ICerealRepository { get; }
+
         public CerealsController(ICerealRepository cerealRepository)
         {
             this.ICerealRepository = cerealRepository;
