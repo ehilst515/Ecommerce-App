@@ -1,29 +1,25 @@
-﻿using ECommerceApp.Controllers;
-using ECommerceApp.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-
+using ECommerceApp.Models;
 
 namespace ECommerceApp.Services
 {
-    
     public class CerealRepository : ICerealRepository
     {
-        private readonly List<Cereal> Cereals = new List<Cereal>{
-        };
-        private static string path = Environment.CurrentDirectory;
-        private static string newPath = Path.GetFullPath(Path.Combine(path, @"wwwroot\cereal.csv"));
-        private static string[] myFile = File.ReadAllLines(newPath);
+        private readonly List<Cereal> Cereals = ReadCereals();
 
-        public List<Cereal> GetCereals(string sortBy)
+        private static List<Cereal> ReadCereals()
         {
-            foreach(string line in myFile)
+            string path = Environment.CurrentDirectory;
+            string newPath = Path.GetFullPath(Path.Combine(path, @"wwwroot\cereal.csv"));
+            string[] myFile = File.ReadAllLines(newPath);
+
+            List<Cereal> cereals = new List<Cereal>();
+            foreach (string line in myFile)
             {
                 string[] column = line.Split(",");
-                Cereals.Add(new Cereal
+                cereals.Add(new Cereal
                 {
                     Name = column[0],
                     Mfr = column[1],
@@ -43,6 +39,11 @@ namespace ECommerceApp.Services
                     Rating = column[15],
                 });
             }
+            return cereals;
+        }
+
+        public List<Cereal> GetCereals(string sortBy)
+        {
             return Cereals;
         }
     }
