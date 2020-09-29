@@ -1,10 +1,10 @@
-﻿using ECommerceApp.Controllers;
-using ECommerceApp.Services;
+﻿using ECommerceApp.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+
 
 namespace ECommerceApp
 {
@@ -22,6 +22,14 @@ namespace ECommerceApp
         {
             services.AddSingleton<ICerealRepository, CerealRepository>();
             services.AddControllersWithViews();
+
+            //services.AddDbContext<StoreDbContext>(options =>
+            //{
+            //    // DATABASE_URL equivalent 
+            //    string connectionString = Configuration.GetConnectionString("DefaultConnection");
+            //    options.UseSqlServer(connectionString);
+            //});
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
