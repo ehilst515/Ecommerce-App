@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using ECommerceApp.Models;
@@ -44,17 +44,6 @@ namespace ECommerceApp.Services
 
         private static CerealType ParseType(string type)
         {
-            //switch (type)
-            //{
-            //    case "C":
-            //        return CerealType.Cold;
-
-            //    case "H":
-            //        return CerealType.Hot;
-
-            //    default:
-            //        throw new FormatException($"Invalid type value ${type}");
-            //}
 
             CerealType parsedType = type switch
             {
@@ -72,3 +61,4 @@ namespace ECommerceApp.Services
         }
     }
 }
+
