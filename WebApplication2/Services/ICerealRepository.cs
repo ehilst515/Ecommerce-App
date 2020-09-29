@@ -1,12 +1,10 @@
-﻿using ECommerceApp.Models;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using ECommerceApp.Models;
 
-namespace ECommerceApp.Controllers
+namespace ECommerceApp.Services
 {
     public interface ICerealRepository
     {
         List<Cereal> GetCereals(string sortBy);
     }
-
 }
