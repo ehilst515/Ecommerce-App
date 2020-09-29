@@ -4,7 +4,7 @@
     {
         public string Name { get; set; }
         public string Mfr { get; set; }
-        public string Type { get; set; }
+        public CerealType Type { get; set; }
         public int Calories { get; set; }
         public string Protein { get; set; }
         public string Fat { get; set; }
@@ -18,5 +18,11 @@
         public decimal Weight { get; set; }
         public decimal Cups { get; set; }
         public string Rating { get; set; }
+    }
+
+    public enum CerealType
+    {
+        Cold,
+        Hot,
     }
 }

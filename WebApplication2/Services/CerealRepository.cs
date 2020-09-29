@@ -23,7 +23,7 @@ namespace ECommerceApp.Services
                 {
                     Name = column[0],
                     Mfr = column[1],
-                    Type = column[2],
+                    Type = ParseType(column[2]),
                     Calories = Convert.ToInt32(column[3]),
                     Protein = column[4],
                     Fat = column[5],
@@ -40,6 +40,21 @@ namespace ECommerceApp.Services
                 });
             }
             return cereals;
+        }
+
+        private static CerealType ParseType(string type)
+        {
+            switch (type)
+            {
+                case "C":
+                    return CerealType.Cold;
+
+                case "H":
+                    return CerealType.Hot;
+
+                default:
+                    throw new FormatException($"Invalid type value ${type}");
+            }
         }
 
         public List<Cereal> GetCereals(string sortBy)
