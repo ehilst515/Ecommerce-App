@@ -44,17 +44,26 @@ namespace ECommerceApp.Services
 
         private static CerealType ParseType(string type)
         {
-            switch (type)
+            //switch (type)
+            //{
+            //    case "C":
+            //        return CerealType.Cold;
+
+            //    case "H":
+            //        return CerealType.Hot;
+
+            //    default:
+            //        throw new FormatException($"Invalid type value ${type}");
+            //}
+
+            CerealType parsedType = type switch
             {
-                case "C":
-                    return CerealType.Cold;
+                "C" => CerealType.Cold,
+                "H" => CerealType.Hot,
+                _ => throw new FormatException($"Invalid type value ${type}"),
+            };
 
-                case "H":
-                    return CerealType.Hot;
-
-                default:
-                    throw new FormatException($"Invalid type value ${type}");
-            }
+            return parsedType;
         }
 
         public List<Cereal> GetCereals(string sortBy)
