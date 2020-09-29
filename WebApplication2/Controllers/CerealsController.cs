@@ -1,26 +1,34 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using ECommerceApp.Models;
+using ECommerceApp.Services;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 
 namespace ECommerceApp.Controllers
 {
     public class CerealsController : Controller
     {
-        public ICerealRepository ICerealRepository { get; }
+        private readonly ICerealRepository cerealRepository;
 
         public CerealsController(ICerealRepository cerealRepository)
         {
-            this.ICerealRepository = cerealRepository;
+            this.cerealRepository = cerealRepository;
         }
+
         // GET: CerealsController
-        public ActionResult Index()
+        public ActionResult Index(string sortBy)
         {
-            return View();
+            var cereals = cerealRepository.GetCereals(sortBy);
+            if (cereals == null)
+                return NotFound();
+
+            return View(cereals);
         }
 
         // GET: CerealsController/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            return View(new List<Cereal>());
         }
 
         // GET: CerealsController/Create
