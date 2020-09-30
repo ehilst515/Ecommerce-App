@@ -2,18 +2,13 @@
 using ECommerceApp.Models.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace ECommerceApp.Services
+namespace ECommerceApp.Data
 {
     public class StoreDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, string>
     {
         public StoreDbContext(DbContextOptions options) : base(options)
         {
-
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

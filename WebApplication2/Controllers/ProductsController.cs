@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ECommerceApp.Models;
-using ECommerceApp.Services;
+using ECommerceApp.Data;
 
 namespace ECommerceApp.Controllers
 {

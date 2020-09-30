@@ -1,5 +1,5 @@
 ﻿using ECommerceApp.Models;
-using ECommerceApp.Services;
+using ECommerceApp.Data;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
