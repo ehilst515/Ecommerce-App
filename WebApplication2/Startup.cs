@@ -23,8 +23,10 @@ namespace ECommerceApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSingleton<ICerealRepository, CerealRepository>();
             services.AddControllersWithViews();
+            services.AddRazorPages();
+
+            services.AddSingleton<ICerealRepository, CerealRepository>();
             services.AddTransient<IStoreRepository, StoreRepository>();
 
             services.AddDbContext<StoreDbContext>(options =>
@@ -62,6 +64,8 @@ namespace ECommerceApp
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapRazorPages();
+
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
