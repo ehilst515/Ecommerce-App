@@ -19,8 +19,11 @@ namespace ECommerceApp.Data
                 .HasData(
                     new Product { Id = 1, Name = "Lamp", Manuf = "Google", Price = 20.00M }
                 );
+
+            // SeedRole(modelBuilder, "Administrator", "create", "update", "delete");
+            // SeedRole(modelBuilder, "Editor", "create", "update");
+            // SeedRole(modelBuilder, "User");
         }
-        
         public DbSet<Product> Products { get; set; }
     }
 }
