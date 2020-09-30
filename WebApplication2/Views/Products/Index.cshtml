@@ -28,7 +28,7 @@
         </tr>
     </thead>
     <tbody>
-<<<<<<< HEAD
+
 @foreach (var item in Model) {
         <tr>
             <td>
@@ -47,7 +47,7 @@
             </td>
         </tr>
 }
-=======
+
         @foreach (var item in Model)
         {
             <tr>
@@ -55,10 +55,10 @@
                     @Html.DisplayFor(modelItem => item.Name)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Description)
+                    @Html.DisplayFor(modelItem => item.Price)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Price)
+                    @Html.DisplayFor(modelItem => item.Description)
                 </td>
                 <td>
                     <a asp-action="Details" asp-route-id="@item.Id">Details</a>
@@ -71,6 +71,6 @@
                 </td>
             </tr>
         }
->>>>>>> 603a51b9f589c0d8ea11ca5f0a94d6618580dc68
+
     </tbody>
 </table>
