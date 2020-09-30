@@ -17,7 +17,7 @@ namespace ECommerceApp.Data
 
             modelBuilder.Entity<Product>()
                 .HasData(
-                    new Product { Id = 1, Name = "Lamp", Manuf = "Google", Price = 20.00M }
+                    new Product { Id = 1, Sku = "GOO001", Name = "Lamp by Google", Price = 300.00M, Description = "Google's new smart lamp", Image = "No Image" }
                 );
         }
         
