@@ -50,7 +50,7 @@ namespace ECommerceApp.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Manuf,Price")] Product product)
+        public async Task<IActionResult> Create([Bind("Id,Sku,Name,Price,Description,Image")] Product product)
         {
             if (ModelState.IsValid)
             {
@@ -74,6 +74,7 @@ namespace ECommerceApp.Controllers
             {
                 return NotFound();
             }
+
             return View(product);
         }
 
