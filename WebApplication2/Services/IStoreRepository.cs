@@ -1,7 +1,6 @@
 ﻿using ECommerceApp.Models;
-using System;
+using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace ECommerceApp.Services
@@ -13,5 +12,6 @@ namespace ECommerceApp.Services
         Task GetById(long id);
         Task Update(Product product);
         Task<Product> Delete(long id);
+        Task<Product> Details(long? id);
     }
 }

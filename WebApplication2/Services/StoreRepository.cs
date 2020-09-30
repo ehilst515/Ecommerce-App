@@ -1,9 +1,9 @@
 ﻿using ECommerceApp.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc;
 
 namespace ECommerceApp.Services
 {
@@ -31,6 +31,18 @@ namespace ECommerceApp.Services
             
             _context.Products.Remove(product);
             await _context.SaveChangesAsync();
+
+            return product;
+        }
+
+        public async Task<Product> Details(long? id)
+        {
+            var product = await _context.Products
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (product == null)
+            {
+                return null;
+            }
 
             return product;
         }

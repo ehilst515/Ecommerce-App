@@ -36,14 +36,7 @@ namespace ECommerceApp.Controllers
                 return NotFound();
             }
 
-            var product = await _context.Products
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (product == null)
-            {
-                return NotFound();
-            }
-
-            return View(product);
+            return View(await repository.Details(id));
         }
 
         // GET: Products/Create
@@ -61,8 +54,8 @@ namespace ECommerceApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(product);
-                await _context.SaveChangesAsync();
+                await repository.Create(product);
+
                 return RedirectToAction(nameof(Index));
             }
             return View(product);
