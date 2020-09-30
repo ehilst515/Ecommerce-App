@@ -83,7 +83,7 @@ namespace ECommerceApp.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(long id, [Bind("Id,Name,Manuf,Price")] Product product)
+        public async Task<IActionResult> Edit(long id, [Bind("Id,Sku,Name,Price,Description,Image")] Product product)
         {
             if (id != product.Id)
             {
@@ -92,24 +92,13 @@ namespace ECommerceApp.Controllers
 
             if (ModelState.IsValid)
             {
-                try
-                {
-                    _context.Update(product);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!ProductExists(product.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
+                await repository.Update(product);
+
                 return RedirectToAction(nameof(Index));
+
             }
+
+            
             return View(product);
         }
 
@@ -121,14 +110,7 @@ namespace ECommerceApp.Controllers
                 return NotFound();
             }
 
-            var product = await _context.Products
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (product == null)
-            {
-                return NotFound();
-            }
-
-            return View(product);
+            return View(await repository.Delete(id));
         }
 
         // POST: Products/Delete/5
@@ -142,9 +124,6 @@ namespace ECommerceApp.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private bool ProductExists(long id)
-        {
-            return _context.Products.Any(e => e.Id == id);
-        }
+
     }
 }

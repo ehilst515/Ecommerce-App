@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 
 namespace ECommerceApp.Data
 {
@@ -22,13 +23,13 @@ namespace ECommerceApp.Data
             await _context.SaveChangesAsync();
         }
 
-        public async Task<Product> Delete(long id)
+        public async Task<Product> Delete(long? id)
         {
             var product = await _context.Products.FindAsync(id);
 
             if (product == null)
                 return null;
-            
+
             _context.Products.Remove(product);
             await _context.SaveChangesAsync();
 
@@ -57,9 +58,32 @@ namespace ECommerceApp.Data
             throw new NotImplementedException();
         }
 
-        public Task Update(Product product)
+        public async Task<Product> Update(Product product)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _context.Update(product);
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!ProductExists(product.Id))
+                {
+                    return null;
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return product;
+        }
+
+
+        private bool ProductExists(long id)
+        {
+            return _context.Products.Any(e => e.Id == id);
         }
     }
 }

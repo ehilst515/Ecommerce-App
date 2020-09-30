@@ -10,8 +10,8 @@ namespace ECommerceApp.Data
         Task Create(Product product);
         Task<IEnumerable<Product>> GetAll();
         Task GetById(long id);
-        Task Update(Product product);
-        Task<Product> Delete(long id);
+        Task<Product> Update(Product product);
+        Task<Product> Delete(long? id);
         Task<Product> Details(long? id);
     }
 }
