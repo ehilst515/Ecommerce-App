@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using ECommerceApp.Models;
 
-namespace ECommerceApp.Services
+namespace ECommerceApp.Data
 {
     public interface ICerealRepository
     {

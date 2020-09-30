@@ -1,11 +1,13 @@
-﻿using ECommerceApp.Services;
+using System;
+using ECommerceApp.Data;
+using ECommerceApp.Models.Identity;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-
 
 namespace ECommerceApp
 {
@@ -21,18 +23,22 @@ namespace ECommerceApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSingleton<ICerealRepository, CerealRepository>();
             services.AddControllersWithViews();
+            services.AddRazorPages();
 
-            services.AddDbContext<StoreDbContext>(options =>
-            {
-                // DATABASE_URL equivalent 
-                string connectionString = Configuration.GetConnectionString("DefaultConnection");
-                options.UseSqlServer(connectionString);
-            });
-
+            services.AddSingleton<ICerealRepository, CerealRepository>();
             services.AddTransient<IStoreRepository, StoreRepository>();
 
+            services.AddDbContext<StoreDbContext>(options =>
+               {
+                   var connectionString = Configuration.GetConnectionString("DefaultConnection");
+                   if (connectionString == null) throw new InvalidOperationException("Default Connection Missing!");
+                   options.UseSqlServer(connectionString);
+               });
+
+            services.AddIdentity<ApplicationUser, ApplicationRole>()
+                .AddEntityFrameworkStores<StoreDbContext>()
+                .AddDefaultTokenProviders();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -53,10 +59,13 @@ namespace ECommerceApp
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapRazorPages();
+
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using ECommerceApp.Models;
 
-namespace ECommerceApp.Services
+namespace ECommerceApp.Data
 {
     public class CerealRepository : ICerealRepository
     {

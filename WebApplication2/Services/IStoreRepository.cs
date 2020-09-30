@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace ECommerceApp.Services
+namespace ECommerceApp.Data
 {
     public interface IStoreRepository
     {

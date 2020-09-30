@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 
-namespace ECommerceApp.Services
+namespace ECommerceApp.Data
 {
     public class StoreRepository : IStoreRepository
     {
