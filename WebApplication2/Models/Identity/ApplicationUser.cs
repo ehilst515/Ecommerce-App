@@ -4,5 +4,6 @@ namespace ECommerceApp.Models.Identity
 {
     public class ApplicationUser : IdentityUser
     {
+
     }
 }
