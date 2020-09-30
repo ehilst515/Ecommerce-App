@@ -1,6 +1,6 @@
-﻿using ECommerceApp.Data;
+using System;
+using ECommerceApp.Data;
 using ECommerceApp.Models.Identity;
-using ECommerceApp.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -8,7 +8,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
 
 namespace ECommerceApp
 {
@@ -24,9 +23,13 @@ namespace ECommerceApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSingleton<ICerealRepository, CerealRepository>();
             services.AddControllersWithViews();
-            services.AddDbContext<ApplicationDbContext>(options =>
+            services.AddRazorPages();
+
+            services.AddSingleton<ICerealRepository, CerealRepository>();
+            services.AddTransient<IStoreRepository, StoreRepository>();
+
+            services.AddDbContext<StoreDbContext>(options =>
                {
                    var connectionString = Configuration.GetConnectionString("DefaultConnection");
                    if (connectionString == null) throw new InvalidOperationException("Default Connection Missing!");
@@ -34,7 +37,7 @@ namespace ECommerceApp
                });
 
             services.AddIdentity<ApplicationUser, ApplicationRole>()
-                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddEntityFrameworkStores<StoreDbContext>()
                 .AddDefaultTokenProviders();
         }
 
@@ -61,6 +64,8 @@ namespace ECommerceApp
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapRazorPages();
+
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
