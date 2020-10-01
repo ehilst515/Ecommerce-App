@@ -13,7 +13,10 @@ namespace ECommerceApp.Views.Account
 
         public async Task<IActionResult> OnPostAsync()
         {
-
+            if (ModelState.IsValid)
+            {
+                return LocalRedirect("~/");
+            }
             return Page();
         }
 
