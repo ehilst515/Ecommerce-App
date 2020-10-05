@@ -25,5 +25,6 @@ namespace ECommerceApp.Data
             // SeedRole(modelBuilder, "User");
         }
         public DbSet<Product> Products { get; set; }
+
     }
 }
