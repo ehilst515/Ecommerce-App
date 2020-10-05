@@ -13,7 +13,10 @@ namespace ECommerceApp.Views.Account
 
         public async Task<IActionResult> OnPostAsync()
         {
-
+            if (ModelState.IsValid)
+            {
+                return LocalRedirect("~/");
+            }
             return Page();
         }
 
@@ -22,6 +25,7 @@ namespace ECommerceApp.Views.Account
 
         public class RegisterInput
         {
+
             [Required]
             [EmailAddress]
             public string Email { get; set; }
