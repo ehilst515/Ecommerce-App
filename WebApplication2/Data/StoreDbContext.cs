@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ECommerceApp.Data
 {
-    public class StoreDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, string>
+    public class StoreDbContext : IdentityDbContext<ApplicationUser>
     {
         public StoreDbContext(DbContextOptions options) : base(options)
         {
