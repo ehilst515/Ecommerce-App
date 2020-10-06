@@ -1,17 +1,10 @@
-<<<<<<< HEAD
 using ECommerceApp.Models;
-using ECommerceApp.Models.Cart;
-using System;
-=======
 using ECommerceApp.Models.Cart;
 using System;
 using System.Linq;
-using ECommerceApp.Models;
->>>>>>> 5709518019df8a07ff9a204bb7fb93fac699ec6b
 using ECommerceApp.Models.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using System.Linq;
 using Microsoft.AspNetCore.Identity;
 
 namespace ECommerceApp.Data
@@ -61,12 +54,6 @@ namespace ECommerceApp.Data
             modelBuilder.Entity<ApplicationRole>()
                 .HasData(role);
 
-<<<<<<< HEAD
-        
-=======
-        public DbSet<CartItem> CartItems { get; set; }
-
->>>>>>> 5709518019df8a07ff9a204bb7fb93fac699ec6b
             var roleClaims = permissions
                 .Select(permission =>
                     new IdentityRoleClaim<string>
