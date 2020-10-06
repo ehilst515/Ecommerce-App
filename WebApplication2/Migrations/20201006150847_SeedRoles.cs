@@ -2,23 +2,24 @@
 
 namespace ECommerceApp.Migrations
 {
-    public partial class loginStuff : Migration
+    public partial class SeedRoles : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.CreateTable(
-                name: "IdentityRole",
-                columns: table => new
-                {
-                    Id = table.Column<string>(nullable: false),
-                    Name = table.Column<string>(nullable: true),
-                    NormalizedName = table.Column<string>(nullable: true),
-                    ConcurrencyStamp = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_IdentityRole", x => x.Id);
-                });
+            migrationBuilder.InsertData(
+                table: "AspNetRoles",
+                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
+                values: new object[] { "administrator", "00000000-0000-0000-0000-000000000000", "Administrator", "ADMINISTRATOR" });
+
+            migrationBuilder.InsertData(
+                table: "AspNetRoles",
+                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
+                values: new object[] { "editor", "00000000-0000-0000-0000-000000000000", "Editor", "EDITOR" });
+
+            migrationBuilder.InsertData(
+                table: "AspNetRoles",
+                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
+                values: new object[] { "user", "00000000-0000-0000-0000-000000000000", "User", "USER" });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoleClaims",
@@ -31,23 +32,10 @@ namespace ECommerceApp.Migrations
                     { 4, "permissions", "create", "editor" },
                     { 5, "permissions", "update", "editor" }
                 });
-
-            migrationBuilder.InsertData(
-                table: "IdentityRole",
-                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[,]
-                {
-                    { "administrator", "00000000-0000-0000-0000-000000000000", "Administrator", "ADMINISTRATOR" },
-                    { "editor", "00000000-0000-0000-0000-000000000000", "Editor", "EDITOR" },
-                    { "user", "00000000-0000-0000-0000-000000000000", "User", "USER" }
-                });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "IdentityRole");
-
             migrationBuilder.DeleteData(
                 table: "AspNetRoleClaims",
                 keyColumn: "Id",
@@ -72,6 +60,21 @@ namespace ECommerceApp.Migrations
                 table: "AspNetRoleClaims",
                 keyColumn: "Id",
                 keyValue: 5);
+
+            migrationBuilder.DeleteData(
+                table: "AspNetRoles",
+                keyColumn: "Id",
+                keyValue: "user");
+
+            migrationBuilder.DeleteData(
+                table: "AspNetRoles",
+                keyColumn: "Id",
+                keyValue: "administrator");
+
+            migrationBuilder.DeleteData(
+                table: "AspNetRoles",
+                keyColumn: "Id",
+                keyValue: "editor");
         }
     }
 }

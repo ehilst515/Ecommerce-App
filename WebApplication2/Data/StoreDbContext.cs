@@ -1,10 +1,10 @@
-﻿using ECommerceApp.Models;
+﻿using System;
+using System.Linq;
+using ECommerceApp.Models;
 using ECommerceApp.Models.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Linq;
 
 namespace ECommerceApp.Data
 {
@@ -27,20 +27,21 @@ namespace ECommerceApp.Data
             SeedRole(modelBuilder, "Editor", "create", "update");
             SeedRole(modelBuilder, "User");
         }
+
         public DbSet<Product> Products { get; set; }
 
         private int nextRoleClaimId = 1;
 
         private void SeedRole(ModelBuilder modelBuilder, string roleName = null, params string[] permissions)
         {
-            var role = new IdentityRole
+            var role = new ApplicationRole
             {
                 Id = roleName.ToLower(),
                 Name = roleName,
                 NormalizedName = roleName.ToUpper(),
                 ConcurrencyStamp = Guid.Empty.ToString(),
             };
-            modelBuilder.Entity<IdentityRole>()
+            modelBuilder.Entity<ApplicationRole>()
                 .HasData(role);
 
             var roleClaims = permissions

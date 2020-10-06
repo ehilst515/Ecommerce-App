@@ -44,6 +44,29 @@ namespace ECommerceApp.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "administrator",
+                            ConcurrencyStamp = "00000000-0000-0000-0000-000000000000",
+                            Name = "Administrator",
+                            NormalizedName = "ADMINISTRATOR"
+                        },
+                        new
+                        {
+                            Id = "editor",
+                            ConcurrencyStamp = "00000000-0000-0000-0000-000000000000",
+                            Name = "Editor",
+                            NormalizedName = "EDITOR"
+                        },
+                        new
+                        {
+                            Id = "user",
+                            ConcurrencyStamp = "00000000-0000-0000-0000-000000000000",
+                            Name = "User",
+                            NormalizedName = "USER"
+                        });
                 });
 
             modelBuilder.Entity("ECommerceApp.Models.Identity.ApplicationUser", b =>
@@ -146,48 +169,6 @@ namespace ECommerceApp.Migrations
                             Name = "Lamp by Google",
                             Price = 300.00m,
                             Sku = "GOO001"
-                        });
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("ConcurrencyStamp")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("NormalizedName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("IdentityRole");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "administrator",
-                            ConcurrencyStamp = "00000000-0000-0000-0000-000000000000",
-                            Name = "Administrator",
-                            NormalizedName = "ADMINISTRATOR"
-                        },
-                        new
-                        {
-                            Id = "editor",
-                            ConcurrencyStamp = "00000000-0000-0000-0000-000000000000",
-                            Name = "Editor",
-                            NormalizedName = "EDITOR"
-                        },
-                        new
-                        {
-                            Id = "user",
-                            ConcurrencyStamp = "00000000-0000-0000-0000-000000000000",
-                            Name = "User",
-                            NormalizedName = "USER"
                         });
                 });
 
