@@ -1,4 +1,5 @@
 ﻿using ECommerceApp.Models;
+using ECommerceApp.Models.Cart;
 using ECommerceApp.Models.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -13,6 +14,14 @@ namespace ECommerceApp.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<CartItem>()
+                .HasKey(cartItem => new
+                {
+                    cartItem.UserId,
+                    cartItem.ProductId
+                });
+
+
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<Product>()
@@ -25,5 +34,7 @@ namespace ECommerceApp.Data
             // SeedRole(modelBuilder, "User");
         }
         public DbSet<Product> Products { get; set; }
+        public DbSet<CartItem> CartItems { get; set; }
+
     }
 }
