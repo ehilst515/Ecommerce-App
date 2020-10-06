@@ -25,6 +25,7 @@ namespace ECommerceApp.Views.Account
 
         public class RegisterInput
         {
+
             [Required]
             [EmailAddress]
             public string Email { get; set; }

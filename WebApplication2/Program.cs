@@ -1,8 +1,7 @@
-﻿using ECommerceApp;
-using Microsoft.AspNetCore.Hosting;
+﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 
-namespace WebApplication2
+namespace ECommerceApp
 {
     public class Program
     {
