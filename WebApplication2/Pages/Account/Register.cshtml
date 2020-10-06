@@ -3,6 +3,12 @@
 
 <h1>Register</h1>
 
+<div class="page-header">
+    <div class="alert alert-info" role="alert">
+        <strong>Hi there!</strong> If you have already registered, please use the Login page.
+    </div>
+</div>
+
 <div class="row">
     <div class="col-md-4">
         <form method="post">
@@ -22,7 +28,7 @@
                 <input asp-for="Input.ConfirmPassword" class="form-control" />
                 <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn-info">Submit</button>
         </form>
     </div>
 </div>
