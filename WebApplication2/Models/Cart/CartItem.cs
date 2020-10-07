@@ -1,10 +1,15 @@
-﻿namespace ECommerceApp.Models.Cart
+﻿using ECommerceApp.Models.Identity;
+
+namespace ECommerceApp.Models.Cart
 {
     public class CartItem
     {
-        public long UserId { get; set; }
+        public string UserId { get; set; }
         public long ProductId { get; set; }
-        public Product Product { get; set; }
 
+        // Navigation Properties
+        public ApplicationUser User { get; set; }
+
+        public Product Product { get; set; }
     }
 }
