@@ -68,6 +68,12 @@ namespace ECommerceApp
                 options.RouteTemplate = "/api/{documentName}/swagger.json";
             });
 
+            app.UseSwaggerUI(options =>
+            {
+                options.SwaggerEndpoint("/api/v1/swagger.json", "ECommerceApp");
+                options.RoutePrefix = "";
+            });
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
