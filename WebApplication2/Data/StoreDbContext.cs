@@ -1,10 +1,11 @@
-﻿using System;
-using System.Linq;
 using ECommerceApp.Models;
+using ECommerceApp.Models.Cart;
+using System;
+using System.Linq;
 using ECommerceApp.Models.Identity;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 
 namespace ECommerceApp.Data
 {
@@ -16,6 +17,14 @@ namespace ECommerceApp.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<CartItem>()
+                .HasKey(cartItem => new
+                {
+                    cartItem.UserId,
+                    cartItem.ProductId
+                });
+
+
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<Product>()
@@ -29,7 +38,7 @@ namespace ECommerceApp.Data
         }
 
         public DbSet<Product> Products { get; set; }
-
+        public DbSet<CartItem> CartItems { get; set; }
         private int nextRoleClaimId = 1;
 
         private void SeedRole(ModelBuilder modelBuilder, string roleName = null, params string[] permissions)
@@ -41,6 +50,7 @@ namespace ECommerceApp.Data
                 NormalizedName = roleName.ToUpper(),
                 ConcurrencyStamp = Guid.Empty.ToString(),
             };
+
             modelBuilder.Entity<ApplicationRole>()
                 .HasData(role);
 
