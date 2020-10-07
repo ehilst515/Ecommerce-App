@@ -71,7 +71,7 @@ namespace ECommerceApp
             app.UseSwaggerUI(options =>
             {
                 options.SwaggerEndpoint("/api/v1/swagger.json", "ECommerceApp");
-                options.RoutePrefix = "";
+                options.RoutePrefix = "swagger";
             });
 
             app.UseHttpsRedirection();
