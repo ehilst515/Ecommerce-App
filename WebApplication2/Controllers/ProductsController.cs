@@ -1,24 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using ECommerceApp.Models;
+﻿using System.Threading.Tasks;
 using ECommerceApp.Data;
+using ECommerceApp.Models;
+using ECommerceApp.Models.Identity;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 
 namespace ECommerceApp.Controllers
 {
     public class ProductsController : Controller
     {
         private readonly IStoreRepository repository;
-
+        private readonly UserManager<ApplicationUser> userManager;
         private readonly StoreDbContext _context;
 
-        public ProductsController(StoreDbContext context, IStoreRepository repository)
+        public ProductsController(StoreDbContext context, IStoreRepository repository, UserManager<ApplicationUser> userManager)
         {
             this.repository = repository;
+            this.userManager = userManager;
             _context = context;
         }
 
@@ -37,6 +35,24 @@ namespace ECommerceApp.Controllers
             }
 
             return View(await repository.Details(id));
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        // POST: Products/Details/5 = Add to Cart
+        public async Task<IActionResult> Details(long? id, int? quantity)
+        {
+            if (id == null) return NotFound();
+
+            // TODO: Use a repository for this!
+            _context.CartItems.Add(new Models.Cart.CartItem
+            {
+                ProductId = (long)id,
+                UserId = userManager.GetUserId(User),
+            });
+            await _context.SaveChangesAsync();
+
+            return Ok();
         }
 
         // GET: Products/Create
