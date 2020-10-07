@@ -21,7 +21,13 @@ namespace WebApplication2.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier);
+            return View(
+            //    new HomeViewModel 
+            //{ 
+            //    userId 
+            //}
+            );
         }
 
         public IActionResult Privacy()
