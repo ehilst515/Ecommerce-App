@@ -1,10 +1,12 @@
-﻿using ECommerceApp.Models.Cart;
+﻿using System.Collections.Generic;
+using ECommerceApp.Models.Cart;
 using Microsoft.AspNetCore.Identity;
 
 namespace ECommerceApp.Models.Identity
 {
     public class ApplicationUser : IdentityUser
     {
-        public CartItem Cart { get; set; }
+        // Reverse navigation property
+        public List<CartItem> Cart { get; set; }
     }
 }
