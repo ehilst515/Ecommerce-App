@@ -4,6 +4,6 @@
     <h1>Welcome to the ECommerce App!</h1>
     @if (User.Identity.IsAuthenticated)
     {
-        <h2> Current User ID: @User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)</h2>
+        <h2> Current User ID: @User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier).Value</h2>
     }
 </div>
