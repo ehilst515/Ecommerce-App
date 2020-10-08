@@ -1,76 +1,53 @@
 ﻿@model IEnumerable<ECommerceApp.Models.Product>
 
-@{
-    ViewData["Title"] = "Index";
-}
+@{ ViewData["Title"] = "Product List"; }
 
-<h1>Index</h1>
+<h1>Product List</h1>
 
 @if (User.IsInRole("Administrator"))
 {
-    <p>
-        <a asp-action="Create">Create New</a>
-    </p>
-}
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Price)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
+<p>
+    <a asp-action="Create">Create New</a>
+</p>}
 
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
 
-        @foreach (var item in Model)
+@foreach (var item in Model)
+{
+<div class="row">
+    <div class="col-sm-auto">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">@Html.DisplayFor(modelItem => item.Name)</h5>
+                <h6 class="card-subtitle mb-2 text-muted">@Html.DisplayFor(modelItem => item.Price)</h6>
+                <p class="card-text">@Html.DisplayFor(modelItem => item.Description)</p>
+                <a class="card-link" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                <a class="card-link" asp-action="Details" asp-route-id="@item.Id">Details</a>
+                <a class="card-link" asp-action="Add to Cart" asp-route-id="@item.Id">Add to Cart</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-auto">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">@Html.DisplayFor(modelItem => item.Name)</h5>
+                <h6 class="card-subtitle mb-2 text-muted">@Html.DisplayFor(modelItem => item.Price)</h6>
+                <p class="card-text">@Html.DisplayFor(modelItem => item.Description)</p>
+                <a class="card-link" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                <a class="card-link" asp-action="Details" asp-route-id="@item.Id">Details</a>
+                <a class="card-link" asp-action="Add to Cart" asp-route-id="@item.Id">Add to Cart</a>
+            </div>
+        </div>
+    </div>
+</div>}
+
+@foreach (var item in Model)
+{
+<tr>
+    <td>
+
+        @if (User.IsInRole("Administrator"))
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Price)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Description)
-                </td>
-                <td>
-                    <a asp-action="Details" asp-route-id="@item.Id">Details</a>
-
-                    @if (User.IsInRole("Administrator"))
-                    {
-                        <text>|</text> <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
-                        <text>|</text> <a asp-action="Delete" asp-route-id="@item.Id"> Delete </a>
-                    }
-                </td>
-            </tr>
-        }
-
-    </tbody>
-</table>
+<text>|</text> <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                    <text>|</text> <a asp-action="Delete" asp-route-id="@item.Id"> Delete </a>}
+    </td>
+</tr>}
