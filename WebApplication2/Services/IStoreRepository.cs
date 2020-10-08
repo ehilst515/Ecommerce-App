@@ -12,8 +12,13 @@ namespace ECommerceApp.Data
         Task<IEnumerable<Product>> GetAll(int perPage, int pageNum);
 
         Task GetById(long id);
+
         Task<Product> Update(Product product);
+
         Task<Product> Delete(long? id);
+
         Task<Product> Details(long? id);
+
+        Task<int> GetProductsCount();
     }
 }

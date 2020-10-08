@@ -23,7 +23,17 @@ namespace ECommerceApp.Controllers
         // GET: Products
         public async Task<IActionResult> Index(int? perPage, int? pageNum)
         {
-            return View(await repository.GetAll(perPage ?? 12, pageNum ?? 0));
+            int pageIndex = (pageNum - 1) ?? 0;
+            var products = await repository.GetAll(perPage ?? 12, pageIndex);
+            int productCount = await repository.GetProductsCount();
+
+            return View(new ProductListViewModel
+            {
+                Products = products,
+                ProductsPerPage = perPage ?? 12,
+                PageNumber = pageIndex + 1,
+                TotalProducts = productCount,
+            });
         }
 
         // GET: Products/Details/5

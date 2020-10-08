@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ECommerceApp.Models.Product>
+﻿@model ECommerceApp.Models.ProductListViewModel
 
 @{ ViewData["Title"] = "Product List"; }
 
@@ -10,7 +10,7 @@
         <a asp-action="Create">Create New</a>
     </p>}
 
-@foreach (var item in Model)
+@foreach (var item in Model.Products)
 {
     <div class="row">
         <div class="col-sm-auto">
@@ -31,3 +31,16 @@
         </div>
     </div>
 }
+<div class="row">
+    <div class="col-sm-12">
+        @if (Model.PageNumber > 1)
+        {
+            <a asp-route-perPage="@Model.ProductsPerPage" asp-route-pageNum="@(Model.PageNumber - 1)">Prev</a>
+        }
+        Page @Model.PageNumber of @Model.NumberOfPages
+        @if (Model.PageNumber < Model.NumberOfPages)
+        {
+            <a asp-route-perPage="@Model.ProductsPerPage" asp-route-pageNum="@(Model.PageNumber + 1)">Next</a>
+        }
+    </div>
+</div>

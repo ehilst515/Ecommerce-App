@@ -69,6 +69,11 @@ namespace ECommerceApp.Data
             throw new NotImplementedException();
         }
 
+        public async Task<int> GetProductsCount()
+        {
+            return await _context.Products.CountAsync();
+        }
+
         public async Task<Product> Update(Product product)
         {
             try
