@@ -48,9 +48,20 @@ namespace ECommerceApp.Data
             return product;
         }
 
-        public async Task<IEnumerable<Product>> GetAll()
+        public async Task<IEnumerable<Product>> GetAll(int perPage, int pageIndex)
         {
-            return await _context.Products.ToListAsync();
+            if (perPage < 1)
+                throw new ArgumentOutOfRangeException(nameof(perPage), "must be positive.");
+
+            if (pageIndex < 0)
+                throw new ArgumentOutOfRangeException(nameof(pageIndex), "must be non-negative.");
+
+            return await _context.Products
+                .Skip(pageIndex * perPage)
+                .Take(perPage)
+                .OrderBy(p => p.Name)
+                .ThenBy(p => p.Id)
+                .ToListAsync();
         }
 
         public Task GetById(long id)

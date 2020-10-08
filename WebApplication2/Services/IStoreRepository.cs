@@ -8,7 +8,9 @@ namespace ECommerceApp.Data
     public interface IStoreRepository
     {
         Task Create(Product product);
-        Task<IEnumerable<Product>> GetAll();
+
+        Task<IEnumerable<Product>> GetAll(int perPage, int pageNum);
+
         Task GetById(long id);
         Task<Product> Update(Product product);
         Task<Product> Delete(long? id);

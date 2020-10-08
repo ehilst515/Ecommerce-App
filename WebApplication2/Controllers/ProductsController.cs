@@ -21,9 +21,9 @@ namespace ECommerceApp.Controllers
         }
 
         // GET: Products
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? perPage, int? pageNum)
         {
-            return View(await repository.GetAll());
+            return View(await repository.GetAll(perPage ?? 12, pageNum ?? 0));
         }
 
         // GET: Products/Details/5
