@@ -7,6 +7,8 @@ namespace ECommerceApp.Models.Cart
         public string UserId { get; set; }
         public long ProductId { get; set; }
 
+        public int Quantity { get; set; }
+
         // Navigation Properties
         public ApplicationUser User { get; set; }
 

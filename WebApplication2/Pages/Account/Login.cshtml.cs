@@ -19,7 +19,7 @@ namespace ECommerceApp.Pages.Account
 
         public async Task OnGetAsync()
         {
-            await signInManager.SignOutAsync();
+            //await signInManager.SignOutAsync();
         }
 
         public async Task<IActionResult> OnPostAsync()
